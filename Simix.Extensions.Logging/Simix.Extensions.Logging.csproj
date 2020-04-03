@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Copyright 2020</Copyright>
+    <NeutralLanguage>pt-BR</NeutralLanguage>
+    <PackageTags>extensions,logging,símix,email,smtp</PackageTags>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/34796791?s=88&amp;v=4</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/simixsistemas/Simix.Extensions.Logging</PackageProjectUrl>
+    <SignAssembly>false</SignAssembly>
+    <DocumentationFile>..\Simix.Extensions.Logging\Simix.Extensions.Logging.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,11 +18,9 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.5.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.3" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.3" />
     <PackageReference Include="MimeKit" Version="2.5.2" />
-    <PackageReference Include="Simix.SuperMidia.Core" Version="2.2.131" />
-    <PackageReference Include="Simix.SuperMidia.Services" Version="2.2.169" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>

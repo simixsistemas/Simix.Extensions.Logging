@@ -1,9 +1,9 @@
 ![Nuget](https://img.shields.io/nuget/v/Simix.Extensions.Logging.svg)
 
-> Veja essa documentação em: [Português](README.pt-BR.md)
+> Read this in other languages: [English](README.md)
 
 # Símix Extensions Logging
-Símix extension loggin package
+Projeto destinado a centralização das extensões de log da Símix
 
 ## Getting Started
 
@@ -58,5 +58,5 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerF
 
 # Coding Style
 
-This project uses [EditorConfig](http://editorconfig.org) settings.
-For more info, check this repository [Guidelines](https://github.com/simixsistemas/Guidelines).
+Esse projeto utiliza o estilo definido no arquivo [EditorConfig](http://editorconfig.org).
+Acesse o repositório de [Guidelines](https://github.com/simixsistemas/Guidelines) para mais informações.

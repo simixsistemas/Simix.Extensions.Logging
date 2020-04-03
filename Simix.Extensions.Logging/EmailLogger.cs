@@ -1,19 +1,20 @@
 ﻿using Microsoft.Extensions.Logging;
 using Simix.Extensions.Logging.Abstractions;
+using Simix.Extensions.Logging.Extensions;
 using Simix.Extensions.Logging.Helpers;
-using Simix.SuperMidia.Core.Extensions;
-using Simix.SuperMidia.Services.Abstractions;
-using Simix.SuperMidia.Services.Helpers;
 using System;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Simix.Extensions.Logging {
+    /// <summary>
+    /// Email logger class
+    /// </summary>
     public class EmailLogger : IEmailLogger {
         #region Fields
 
-        private readonly SmtpDetails _smtpDetails;
+        private readonly SmtpConfig _smtpDetails;
         private readonly LoggerDetails _loggerDetails;
 
         private readonly IEmailSender _emailSender;
@@ -22,8 +23,14 @@ namespace Simix.Extensions.Logging {
 
         #region Constructors
 
+        /// <summary>
+        /// Email logger constructor
+        /// </summary>
+        /// <param name="smtpDetails">Smtp details</param>
+        /// <param name="loggerDetails">Logger details</param>
+        /// <param name="emailSender">IEmailSender implementation</param>
         public EmailLogger(
-           SmtpDetails smtpDetails, LoggerDetails loggerDetails, IEmailSender emailSender) {
+           SmtpConfig smtpDetails, LoggerDetails loggerDetails, IEmailSender emailSender) {
             _emailSender = emailSender;
             _smtpDetails = smtpDetails;
             _loggerDetails = loggerDetails;
@@ -33,12 +40,26 @@ namespace Simix.Extensions.Logging {
 
         #region IEmailLogger
 
+        /// <summary>
+        /// Log some state
+        /// </summary>
+        /// <typeparam name="TState"></typeparam>
+        /// <param name="logLevel"></param>
+        /// <param name="eventId"></param>
+        /// <param name="state"></param>
+        /// <param name="exception"></param>
+        /// <param name="formatter"></param>
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
             Exception exception, Func<TState, Exception, string> formatter) {
             var message = formatter(state, exception);
-            SendEmailInfo(message);
+            SendEmail(message);
         }
 
+        /// <summary>
+        /// Check if EmailLogger is enabled
+        /// </summary>
+        /// <param name="logLevel"></param>
+        /// <returns></returns>
         public virtual bool IsEnabled(LogLevel logLevel) {
             if (_smtpDetails == null)
                 return false;
@@ -53,24 +74,46 @@ namespace Simix.Extensions.Logging {
             return true;
         }
 
-        public IDisposable BeginScope<TState>(TState state) => new NoDispose();
+        /// <summary>
+        /// BeginScope
+        /// </summary>
+        /// <typeparam name="TState"></typeparam>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public virtual IDisposable BeginScope<TState>(TState state) => new NoDispose();
 
         #endregion
 
         #region Protected Methods
 
-        protected virtual void SendEmailInfo(string message) {
+        /// <summary>
+        /// Sends the email message
+        /// </summary>
+        /// <param name="message"></param>
+        protected virtual void SendEmail(string message) {
             var stringBuilder = new StringBuilder();
             BuildEmailBody(stringBuilder, HtmlHelper.CreateHeaderTitle(_loggerDetails.LogHeader ?? "New Log"), message);
             SendEmailAsync(stringBuilder)
                 .SafeFireAndForget(onException: ex => Debug.WriteLine(ex));
         }
 
+        /// <summary>
+        /// Send the email message
+        /// </summary>
+        /// <param name="stringBuilder"></param>
+        /// <returns></returns>
         protected virtual async Task SendEmailAsync(StringBuilder stringBuilder) {
             await _emailSender.SendEmailAsync(
                 _smtpDetails.SenderEmail, _loggerDetails.ServiceName ?? "Log Service", stringBuilder.ToString());
         }
 
+        /// <summary>
+        /// Build the email body message
+        /// </summary>
+        /// <param name="stringBuilder"></param>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         protected virtual StringBuilder BuildEmailBody(StringBuilder stringBuilder, string title, string message) {
             stringBuilder
                 .Append(title)
@@ -84,8 +127,14 @@ namespace Simix.Extensions.Logging {
         #endregion
     }
 
+    /// <summary>
+    /// No dipose class
+    /// </summary>
     [Serializable]
     public class NoDispose : IDisposable {
+        /// <summary>
+        /// Dispose without implementation
+        /// </summary>
         public void Dispose() { }
     }
 }
