@@ -9,6 +9,11 @@
             IEmailLogger
             </summary>
         </member>
+        <member name="T:Simix.Extensions.Logging.Abstractions.IEmailLoggerProvider">
+            <summary>
+            IEmailLoggerProvider
+            </summary>
+        </member>
         <member name="T:Simix.Extensions.Logging.Abstractions.ISmtpConfig">
             <summary>
             SmtpConfig abstraction
@@ -187,6 +192,29 @@
         <member name="M:Simix.Extensions.Logging.NoDispose.Dispose">
             <summary>
             Dispose without implementation
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.EmailLoggerProvider">
+            <summary>
+            EmailLoggerProvider
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.#ctor(Simix.Extensions.Logging.Abstractions.IEmailLogger)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="emailLogger"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.CreateLogger(System.String)">
+            <summary>
+            ILogger builder
+            </summary>
+            <param name="categoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.Dispose">
+            <summary>
+            IDisposable
             </summary>
         </member>
         <member name="T:Simix.Extensions.Logging.Extensions.TaskExtensions">

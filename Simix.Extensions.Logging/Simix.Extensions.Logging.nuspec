@@ -9,8 +9,7 @@
     <iconUrl>https://avatars3.githubusercontent.com/u/34796791?s=88&amp;v=4</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extensions for logging</description>
-    <releaseNotes>
-    </releaseNotes>
+    <packageprojecturl>https://github.com/simixsistemas/Simix.Extensions.Logging</packageprojecturl>
     <copyright>Copyright 2020</copyright>
     <tags>logging, aspnetcore, email, email-sender, </tags>
     <dependencies>
