@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Simix.Extensions.Logging.Abstractions;
 using Simix.Extensions.Logging.Extensions;
 using Simix.Extensions.Logging.Helpers;
@@ -30,10 +31,10 @@ namespace Simix.Extensions.Logging {
         /// <param name="loggerDetails">Logger details</param>
         /// <param name="emailSender">IEmailSender implementation</param>
         public EmailLogger(
-           SmtpConfig smtpDetails, LoggerDetails loggerDetails, IEmailSender emailSender) {
+           IOptions<SmtpConfig> smtpDetails, IOptions<LoggerDetails> loggerDetails, IEmailSender emailSender) {
             _emailSender = emailSender;
-            _smtpDetails = smtpDetails;
-            _loggerDetails = loggerDetails;
+            _smtpDetails = smtpDetails.Value;
+            _loggerDetails = loggerDetails.Value;
         }
 
         #endregion

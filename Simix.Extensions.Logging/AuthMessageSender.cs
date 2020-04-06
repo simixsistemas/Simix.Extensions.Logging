@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 using Simix.Extensions.Logging.Abstractions;
@@ -24,8 +25,8 @@ namespace Simix.Extensions.Logging {
         /// Default constructor
         /// </summary>
         /// <param name="emailSettings"></param>
-        public AuthMessageSender(ISmtpConfig emailSettings) =>
-            _emailSettings = emailSettings;
+        public AuthMessageSender(IOptions<SmtpConfig> emailSettings) =>
+            _emailSettings = emailSettings.Value;
 
         #endregion
 

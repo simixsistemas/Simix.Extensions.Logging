@@ -10,6 +10,9 @@
     <PackageProjectUrl>https://github.com/simixsistemas/Simix.Extensions.Logging</PackageProjectUrl>
     <SignAssembly>false</SignAssembly>
     <DocumentationFile>..\Simix.Extensions.Logging\Simix.Extensions.Logging.xml</DocumentationFile>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,6 +22,7 @@
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.5.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.3" />
     <PackageReference Include="MimeKit" Version="2.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>

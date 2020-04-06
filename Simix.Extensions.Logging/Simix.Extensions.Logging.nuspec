@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Simix.Extensions.Logging</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1.0</version>
     <title>Simix.Extensions.Logging</title>
     <authors>Felipe Baltazar</authors>
     <owners>Símix Sistemas</owners>
