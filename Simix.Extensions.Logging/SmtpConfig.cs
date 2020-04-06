@@ -56,7 +56,7 @@ namespace Simix.Extensions.Logging {
         public string SenderName { get; set; }
 
         /// <summary>
-        /// Destination
+        /// Smtp Destination
         /// </summary>
         [JsonProperty("destination")]
         public IEnumerable<string> Destination { get; set; }
