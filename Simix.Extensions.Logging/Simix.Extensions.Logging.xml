@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simix.Extensions.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Simix.Extensions.Logging.Abstractions.IEmailLogger">
+            <summary>
+            IEmailLogger
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.Abstractions.IEmailLoggerProvider">
+            <summary>
+            IEmailLoggerProvider
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.Abstractions.ISmtpConfig">
+            <summary>
+            SmtpConfig abstraction
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Host">
+            <summary>
+            Smtp host
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Username">
+            <summary>
+            Smtp username
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Password">
+            <summary>
+            Smtp password
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Port">
+            <summary>
+            Smtp port
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.EnableSsl">
+            <summary>
+            Defines to use ssl
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Domain">
+            <summary>
+            Smtp domain
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.SenderEmail">
+            <summary>
+            Smtp sender email
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.SenderName">
+            <summary>
+            Smtp sender name
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.Abstractions.ISmtpConfig.Destination">
+            <summary>
+            Smtp destination
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.AuthMessageSender">
+            <summary>
+            Authenticated message sender
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.#ctor(Microsoft.Extensions.Options.IOptions{Simix.Extensions.Logging.SmtpConfig})">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="emailSettings"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.SendEmailAsync(System.String,System.String,System.String)">
+            <summary>
+            Sends an authenticated email message
+            </summary>
+            <param name="email"></param>
+            <param name="subject"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.BuildBodyMessage(System.String)">
+            <summary>
+            Build the email body message
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.GetEmailPriority">
+            <summary>
+            Get the email priority
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.ConnectAndSendMessageAsync(MimeKit.MimeMessage,MailKit.Net.Smtp.ISmtpClient,Simix.Extensions.Logging.Abstractions.ISmtpConfig)">
+            <summary>
+            Process SmtpClient authentication and send email message
+            </summary>
+            <param name="mail"></param>
+            <param name="client"></param>
+            <param name="smtpConfig"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.SetDestination(MimeKit.MimeMessage,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Set all email destinations
+            </summary>
+            <param name="mail"></param>
+            <param name="destination"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.AuthMessageSender.ServerValidationCallback(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Server ssl certificate validation callback
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="sslPolicyErrors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Simix.Extensions.Logging.EmailLogger">
+            <summary>
+            Email logger class
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.#ctor(Microsoft.Extensions.Options.IOptions{Simix.Extensions.Logging.SmtpConfig},Microsoft.Extensions.Options.IOptions{Simix.Extensions.Logging.LoggerDetails},Simix.Extensions.Logging.Abstractions.IEmailSender)">
+            <summary>
+            Email logger constructor
+            </summary>
+            <param name="smtpDetails">Smtp details</param>
+            <param name="loggerDetails">Logger details</param>
+            <param name="emailSender">IEmailSender implementation</param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <summary>
+            Log some state
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logLevel"></param>
+            <param name="eventId"></param>
+            <param name="state"></param>
+            <param name="exception"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            Check if EmailLogger is enabled
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.BeginScope``1(``0)">
+            <summary>
+            BeginScope
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.SendEmail(System.String)">
+            <summary>
+            Sends the email message
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.SendEmailAsync(System.Text.StringBuilder)">
+            <summary>
+            Send the email message
+            </summary>
+            <param name="stringBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLogger.BuildEmailBody(System.Text.StringBuilder,System.String,System.String)">
+            <summary>
+            Build the email body message
+            </summary>
+            <param name="stringBuilder"></param>
+            <param name="title"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Simix.Extensions.Logging.NoDispose">
+            <summary>
+            No dipose class
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.NoDispose.Dispose">
+            <summary>
+            Dispose without implementation
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.EmailLoggerProvider">
+            <summary>
+            EmailLoggerProvider
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.#ctor(Simix.Extensions.Logging.Abstractions.IEmailLogger)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="emailLogger"></param>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.CreateLogger(System.String)">
+            <summary>
+            ILogger builder
+            </summary>
+            <param name="categoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Simix.Extensions.Logging.EmailLoggerProvider.Dispose">
+            <summary>
+            IDisposable
+            </summary>
+        </member>
+        <member name="T:Simix.Extensions.Logging.Extensions.TaskExtensions">
+            <summary>
+            Task extensions
+            </summary>
+        </member>
+        <member name="M:Simix.Extensions.Logging.Extensions.TaskExtensions.SafeFireAndForget(System.Threading.Tasks.Task,System.Boolean,System.Action{System.Exception})">
+            <summary>
+            Based on Brandon Minnick repository <see href="https://github.com/brminnick/AsyncAwaitBestPractices/blob/master/Src/AsyncAwaitBestPractices/TaskExtensions.cs">Async Await Best Practices</see>
+            </summary>
+            <param name="task">Task.</param>
+            <param name="continueOnCapturedContext">If set to <c>true</c>, continue on captured context; this will ensure that the Synchronization Context returns to the calling thread.
+            If set to <c>false</c>, continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
+            <param name="onException">If an exception is thrown in the ValueTask, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
+        </member>
+        <member name="T:Simix.Extensions.Logging.SmtpConfig">
+            <summary>
+            Smtp config
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Host">
+            <summary>
+            Smtp Host
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Username">
+            <summary>
+            Smtp Username
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Password">
+            <summary>
+            Smtp Password
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Port">
+            <summary>
+            Smtp port
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.EnableSsl">
+            <summary>
+            Defines to use ssl
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Domain">
+            <summary>
+            Smtp domain
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.SenderEmail">
+            <summary>
+            Smtp sender email
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.SenderName">
+            <summary>
+            Smtp sender name
+            </summary>
+        </member>
+        <member name="P:Simix.Extensions.Logging.SmtpConfig.Destination">
+            <summary>
+            Smtp Destination
+            </summary>
+        </member>
+    </members>
+</doc>
