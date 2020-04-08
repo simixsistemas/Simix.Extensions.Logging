@@ -50,7 +50,7 @@ namespace Simix.Extensions.Logging {
         /// <param name="state"></param>
         /// <param name="exception"></param>
         /// <param name="formatter"></param>
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
+        public virtual void Log<TState>(LogLevel logLevel, EventId eventId, TState state,
             Exception exception, Func<TState, Exception, string> formatter) {
             var message = formatter(state, exception);
             SendEmail(message);
